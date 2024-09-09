@@ -10,7 +10,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSwaggerGen(c =>
+builder.Services.AddSwaggerGen(c =>//configuracion def swagger
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppleStore", Version = "v1" });
 
@@ -71,6 +71,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IClientRepository, ClientRepository>();
 builder.Services.AddSingleton<IClientService, ClientService>();
+builder.Services.AddSingleton<IMaintenanceRepository, MaintenanceRepository>();
+builder.Services.AddSingleton<IMaintenanceService, MaintenanceService>();
+builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+builder.Services.AddSingleton<IProductService, ProductService>();
 
 var app = builder.Build();
 
@@ -83,7 +87,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
+app.UseAuthentication();//
 
 app.UseAuthorization();
 
