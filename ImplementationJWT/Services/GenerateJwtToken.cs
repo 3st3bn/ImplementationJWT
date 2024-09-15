@@ -1,38 +1,20 @@
 ﻿using ImplementationJWT.Models;
-using Microsoft.AspNetCore.Mvc;
+using ImplementationJWT.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ImplementationJWT.Controllers
+namespace ImplementationJWT.Services
 {
-    [Route("api/[controller]")]
-    [ApiController]
-       
-    public class AuthenticationController : ControllerBase
+    public class GenerateJwtToken : IGenerateJwtToken
     {
         private IConfiguration _configuration;
-
-        public AuthenticationController(IConfiguration configuration)
+        public GenerateJwtToken(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-
-        // GET: api/<AuthenticationController>
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] User login)
-        {
-            if (login.Name == "token" && login.Password == "password")
-            {
-                var token = GenerateJwtToken(login.Name);
-                return Ok(new { token });
-            }
-
-            return Unauthorized();
-        }
-
-        private string GenerateJwtToken(string username)
+        public string CreateJwtToken(string username)
         {
             var key = Encoding.ASCII.GetBytes(_configuration["jwt:Key"]);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -51,5 +33,4 @@ namespace ImplementationJWT.Controllers
             return tokenHandler.WriteToken(token);
         }
     }
-    
 }

@@ -76,6 +76,8 @@ builder.Services.AddSingleton<IMaintenanceService, MaintenanceService>();
 builder.Services.AddSingleton<IProductRepository, ProductRepository>();
 builder.Services.AddSingleton<IProductService, ProductService>();
 
+builder.Services.AddSingleton<IGenerateJwtToken, GenerateJwtToken>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

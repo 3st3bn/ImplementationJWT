@@ -8,7 +8,7 @@ namespace ImplementationJWT.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
         // GET: api/<ProductController>
         [HttpGet]

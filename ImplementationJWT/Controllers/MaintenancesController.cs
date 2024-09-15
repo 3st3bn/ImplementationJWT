@@ -11,11 +11,11 @@ namespace ImplementationJWT.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class MaintenanceController : ControllerBase
+    public class MaintenancesController : ControllerBase
     {
         private readonly IMaintenanceService _maintenanceService;
 
-        public MaintenanceController(IMaintenanceService maintenanceService)
+        public MaintenancesController(IMaintenanceService maintenanceService)
         {
             _maintenanceService = maintenanceService;
         }
